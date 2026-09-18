@@ -1,2 +1,43 @@
-skills/
+# dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# build output
+.next/
+out/
+build/
+dist/
+
+# env & secrets
+.env
+.env*.local
+
+# database
+db/
+*.db
+*.db-journal
+
+# dev logs
+dev.log
+server.log
+*.log
+
+# internal assets workspace (search results, generated before copying to public)
+.assets/
+
+# misc
+.DS_Store
+*.pem
+.vscode/
+.idea/
+coverage/
+agent-ctx/
+download/
+examples/
+skills/
+
+# scaffold extras not part of the app
+.zscripts/
+mini-services/
+tests/
