@@ -33,3 +33,20 @@ Stage Summary:
 - All code complete; pending: image assets (rate-limited 429, retry pipeline running), DB seed, browser E2E, GitHub push (repo created: adam7awash-sudo/dr-walid-el-tahan-pharmacy).
 - Browser smoke test passed: RTL Arabic renders, header/hero/nav working, no console errors.
 
+
+---
+Task ID: 3 (assets, E2E verification, GitHub)
+Agent: main (Z.ai Code)
+Task: Image assets, browser E2E verification, GitHub push
+
+Work Log:
+- image-search API hit 429 rate limits (parallel burst); built retry pipeline. Fallback: generated 23 AI images (3 heroes, promo banner, pharmacist, 18 product-pool images) via z-ai image CLI.
+- Discovered API size constraint: only 1344x768 works for landscape (720 not multiple of 32); used 1024x1024 for product images.
+- Copied all images to public/assets/, re-seeded DB: 74 products with real photos.
+- Browser E2E (agent-browser): AR RTL home ✓, hero carousel ✓, flash-sale countdown ✓, product cards ✓, quick view + add-to-bag toast ✓, cart drawer ✓, promo WELCOME10 (-48 EGP) ✓, 4-step checkout (Cairo, saver shipping) ✓, order WT-MU7IZ55945 persisted with correct server-side totals (462 EGP) ✓, success page ✓, EN/LTR switch ✓, shop filters (Skin Care → 16 results) ✓, mobile 390px ✓, sticky footer ✓, policy/footer links ✓.
+- Fixed runtime bug found during E2E: `total is not defined` in shop-view (refactored to result?.total).
+- Lint passes clean. GitHub: repo adam7awash-sudo/dr-walid-el-tahan-pharmacy created & pushed (main, commits b286554 + 6e91fb0); removed tracked .env/download from repo; token never persisted in git config or committed files.
+
+Stage Summary:
+- Site fully functional and verified; code live on GitHub.
+- Known limits: image-search real photos unavailable due to sustained 429 (AI-generated photography used); promo/coupon codes: WELCOME10, TAHA15, FREESHIP, SAVE50.
